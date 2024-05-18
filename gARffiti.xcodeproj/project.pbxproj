@@ -13,16 +13,20 @@
 		AC4641FE2BF5F0AB002DEE95 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = AC4641FD2BF5F0AB002DEE95 /* Base */; };
 		AC4642002BF5F0AC002DEE95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC4641FF2BF5F0AC002DEE95 /* Assets.xcassets */; };
 		AC4642032BF5F0AC002DEE95 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = AC4642022BF5F0AC002DEE95 /* Base */; };
+		AC609D0D2BF8FBDF00C60504 /* ARBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC609D0C2BF8FBDF00C60504 /* ARBrain.swift */; };
+		ACCB55FD2BF71305007E9D87 /* MultipeerSession in Frameworks */ = {isa = PBXBuildFile; productRef = ACCB55FC2BF71305007E9D87 /* MultipeerSession */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AC4641F32BF5F0AB002DEE95 /* gARffiti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gARffiti.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC4641F62BF5F0AB002DEE95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC4641F82BF5F0AB002DEE95 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
-		AC4641FA2BF5F0AB002DEE95 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AC4641FA2BF5F0AB002DEE95 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = gARffiti/Controller/ViewController.swift; sourceTree = SOURCE_ROOT; };
 		AC4641FD2BF5F0AB002DEE95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AC4641FF2BF5F0AC002DEE95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC4642022BF5F0AC002DEE95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AC4C17AD2BF7275600CDEBFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AC609D0C2BF8FBDF00C60504 /* ARBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARBrain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACCB55FD2BF71305007E9D87 /* MultipeerSession in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,14 +60,40 @@
 		AC4641F52BF5F0AB002DEE95 /* gARffiti */ = {
 			isa = PBXGroup;
 			children = (
+				ACE50E8C2BF8758F00723990 /* Model */,
+				AC4C17AE2BF73F7500CDEBFB /* View */,
+				AC4C17AF2BF73F8300CDEBFB /* Controller */,
+				AC4C17AD2BF7275600CDEBFB /* Info.plist */,
 				AC4641F62BF5F0AB002DEE95 /* AppDelegate.swift */,
 				AC4641F82BF5F0AB002DEE95 /* art.scnassets */,
-				AC4641FA2BF5F0AB002DEE95 /* ViewController.swift */,
-				AC4641FC2BF5F0AB002DEE95 /* Main.storyboard */,
 				AC4641FF2BF5F0AC002DEE95 /* Assets.xcassets */,
 				AC4642012BF5F0AC002DEE95 /* LaunchScreen.storyboard */,
 			);
 			path = gARffiti;
+			sourceTree = "<group>";
+		};
+		AC4C17AE2BF73F7500CDEBFB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AC4641FC2BF5F0AB002DEE95 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AC4C17AF2BF73F8300CDEBFB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AC4641FA2BF5F0AB002DEE95 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		ACE50E8C2BF8758F00723990 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AC609D0C2BF8FBDF00C60504 /* ARBrain.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -81,6 +112,9 @@
 			dependencies = (
 			);
 			name = gARffiti;
+			packageProductDependencies = (
+				ACCB55FC2BF71305007E9D87 /* MultipeerSession */,
+			);
 			productName = gARffiti;
 			productReference = AC4641F32BF5F0AB002DEE95 /* gARffiti.app */;
 			productType = "com.apple.product-type.application";
@@ -109,6 +143,9 @@
 				Base,
 			);
 			mainGroup = AC4641EA2BF5F0AB002DEE95;
+			packageReferences = (
+				ACCB55FB2BF71305007E9D87 /* XCRemoteSwiftPackageReference "multipeer-session" */,
+			);
 			productRefGroup = AC4641F42BF5F0AB002DEE95 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC609D0D2BF8FBDF00C60504 /* ARBrain.swift in Sources */,
 				AC4641FB2BF5F0AB002DEE95 /* ViewController.swift in Sources */,
 				AC4641F72BF5F0AB002DEE95 /* AppDelegate.swift in Sources */,
 			);
@@ -292,7 +330,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ARLGKL6RC3;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = gARffiti/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -322,7 +362,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ARLGKL6RC3;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = gARffiti/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -365,6 +407,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		ACCB55FB2BF71305007E9D87 /* XCRemoteSwiftPackageReference "multipeer-session" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RyanKopinskyLLC/multipeer-session.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		ACCB55FC2BF71305007E9D87 /* MultipeerSession */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ACCB55FB2BF71305007E9D87 /* XCRemoteSwiftPackageReference "multipeer-session" */;
+			productName = MultipeerSession;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AC4641EB2BF5F0AB002DEE95 /* Project object */;
 }
