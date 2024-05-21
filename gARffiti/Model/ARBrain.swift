@@ -73,4 +73,24 @@ struct ARBrain {
         
         return planeNode
     }
+    
+    func addFlashEffect(_ scene: ARSCNView) {
+        // Create a white view
+        let flashView = UIView(frame: scene.bounds)
+        flashView.backgroundColor = UIColor.white
+        flashView.alpha = 0.0
+        scene.addSubview(flashView)
+        
+        // Animate the flash effect
+        UIView.animate(withDuration: 0.1, animations: {
+            flashView.alpha = 1.0
+        }) { _ in
+            UIView.animate(withDuration: 0.1, animations: {
+                flashView.alpha = 0.0
+            }) { _ in
+                // Remove the flash view after the animation
+                flashView.removeFromSuperview()
+            }
+        }
+    }
 }

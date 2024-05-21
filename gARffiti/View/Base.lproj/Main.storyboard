@@ -3,6 +3,7 @@
     <device id="ipad12_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,19 +21,19 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                             </arscnView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="FX9-bq-KJC">
-                                <rect key="frame" x="0.0" y="814" width="1366" height="210"/>
+                                <rect key="frame" x="0.0" y="794" width="1366" height="210"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="X3q-s6-7tP">
-                                        <rect key="frame" x="470.5" y="0.0" width="425" height="100"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="X3q-s6-7tP">
+                                        <rect key="frame" x="200" y="0.0" width="966" height="100"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZb-YZ-Uv6">
                                                 <rect key="frame" x="0.0" y="12.5" width="75" height="75"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="ahb-1Q-VBZ"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="dnZ-eX-BTh"/>
                                                     <constraint firstAttribute="height" constant="75" id="fGL-UH-teQ"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" cornerStyle="capsule">
+                                                <buttonConfiguration key="configuration" style="filled" image="arrow.uturn.backward" catalog="system" cornerStyle="capsule">
                                                     <color key="baseBackgroundColor" systemColor="systemRedColor"/>
                                                 </buttonConfiguration>
                                                 <connections>
@@ -40,19 +41,23 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LLf-Gq-Hy9">
-                                                <rect key="frame" x="175" y="0.0" width="75" height="100"/>
+                                                <rect key="frame" x="433" y="0.0" width="100" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="2k3-ux-k0G"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="Er0-mS-yHt"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" cornerStyle="capsule"/>
+                                                <buttonConfiguration key="configuration" style="filled" cornerStyle="capsule">
+                                                    <imageReference key="image" image="camera.fill" catalog="system" symbolScale="large"/>
+                                                </buttonConfiguration>
                                                 <connections>
                                                     <action selector="takePhoto:" destination="bWw-Bi-PiQ" eventType="touchUpInside" id="Ewr-jJ-xta"/>
                                                 </connections>
                                             </button>
                                             <colorWell contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pd8-Ni-U5c">
-                                                <rect key="frame" x="350" y="12.5" width="75" height="75"/>
+                                                <rect key="frame" x="891" y="12.5" width="75" height="75"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="width" constant="75" id="Rrf-S4-5t1"/>
                                                     <constraint firstAttribute="height" constant="75" id="Ysv-Td-rpT"/>
                                                 </constraints>
                                                 <color key="selectedColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -69,7 +74,9 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="51t-8k-QnF" firstAttribute="leading" secondItem="FX9-bq-KJC" secondAttribute="leading" constant="50" id="DlD-gS-woK"/>
+                                    <constraint firstAttribute="trailing" secondItem="X3q-s6-7tP" secondAttribute="trailingMargin" constant="200" id="KQM-bA-GBo"/>
                                     <constraint firstAttribute="trailing" secondItem="51t-8k-QnF" secondAttribute="trailing" constant="50" id="ppy-Ch-aUW"/>
+                                    <constraint firstItem="X3q-s6-7tP" firstAttribute="leadingMargin" secondItem="FX9-bq-KJC" secondAttribute="leading" constant="200" id="y3u-zz-ENz"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -123,6 +130,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.uturn.backward" catalog="system" width="128" height="113"/>
+        <image name="camera.fill" catalog="system" width="128" height="93"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
