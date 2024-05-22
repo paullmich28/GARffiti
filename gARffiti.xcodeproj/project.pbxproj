@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC3C8BC32BFDAA26002DBD6C /* gambar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AC3C8BC22BFDAA26002DBD6C /* gambar.mp3 */; };
 		AC4641F72BF5F0AB002DEE95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4641F62BF5F0AB002DEE95 /* AppDelegate.swift */; };
 		AC4641F92BF5F0AB002DEE95 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = AC4641F82BF5F0AB002DEE95 /* art.scnassets */; };
 		AC4641FB2BF5F0AB002DEE95 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4641FA2BF5F0AB002DEE95 /* ViewController.swift */; };
@@ -14,10 +15,12 @@
 		AC4642002BF5F0AC002DEE95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC4641FF2BF5F0AC002DEE95 /* Assets.xcassets */; };
 		AC4642032BF5F0AC002DEE95 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = AC4642022BF5F0AC002DEE95 /* Base */; };
 		AC609D0D2BF8FBDF00C60504 /* ARBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC609D0C2BF8FBDF00C60504 /* ARBrain.swift */; };
+		AC96405C2BFD9E070067C479 /* kocok.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AC96405B2BFD9E070067C479 /* kocok.mp3 */; };
 		ACCB55FD2BF71305007E9D87 /* MultipeerSession in Frameworks */ = {isa = PBXBuildFile; productRef = ACCB55FC2BF71305007E9D87 /* MultipeerSession */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AC3C8BC22BFDAA26002DBD6C /* gambar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gambar.mp3; sourceTree = "<group>"; };
 		AC4641F32BF5F0AB002DEE95 /* gARffiti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gARffiti.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC4641F62BF5F0AB002DEE95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC4641F82BF5F0AB002DEE95 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -27,6 +30,7 @@
 		AC4642022BF5F0AC002DEE95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC4C17AD2BF7275600CDEBFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AC609D0C2BF8FBDF00C60504 /* ARBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARBrain.swift; sourceTree = "<group>"; };
+		AC96405B2BFD9E070067C479 /* kocok.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = kocok.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,14 +64,14 @@
 		AC4641F52BF5F0AB002DEE95 /* gARffiti */ = {
 			isa = PBXGroup;
 			children = (
+				AC4641F62BF5F0AB002DEE95 /* AppDelegate.swift */,
 				ACE50E8C2BF8758F00723990 /* Model */,
 				AC4C17AE2BF73F7500CDEBFB /* View */,
 				AC4C17AF2BF73F8300CDEBFB /* Controller */,
+				AC9640582BFD9DD80067C479 /* Audio */,
 				AC4C17AD2BF7275600CDEBFB /* Info.plist */,
-				AC4641F62BF5F0AB002DEE95 /* AppDelegate.swift */,
-				AC4641F82BF5F0AB002DEE95 /* art.scnassets */,
 				AC4641FF2BF5F0AC002DEE95 /* Assets.xcassets */,
-				AC4642012BF5F0AC002DEE95 /* LaunchScreen.storyboard */,
+				AC4641F82BF5F0AB002DEE95 /* art.scnassets */,
 			);
 			path = gARffiti;
 			sourceTree = "<group>";
@@ -75,6 +79,7 @@
 		AC4C17AE2BF73F7500CDEBFB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AC4642012BF5F0AC002DEE95 /* LaunchScreen.storyboard */,
 				AC4641FC2BF5F0AB002DEE95 /* Main.storyboard */,
 			);
 			path = View;
@@ -86,6 +91,15 @@
 				AC4641FA2BF5F0AB002DEE95 /* ViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		AC9640582BFD9DD80067C479 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				AC3C8BC22BFDAA26002DBD6C /* gambar.mp3 */,
+				AC96405B2BFD9E070067C479 /* kocok.mp3 */,
+			);
+			path = Audio;
 			sourceTree = "<group>";
 		};
 		ACE50E8C2BF8758F00723990 /* Model */ = {
@@ -162,6 +176,8 @@
 			files = (
 				AC4641F92BF5F0AB002DEE95 /* art.scnassets in Resources */,
 				AC4642002BF5F0AC002DEE95 /* Assets.xcassets in Resources */,
+				AC3C8BC32BFDAA26002DBD6C /* gambar.mp3 in Resources */,
+				AC96405C2BFD9E070067C479 /* kocok.mp3 in Resources */,
 				AC4641FE2BF5F0AB002DEE95 /* Base in Resources */,
 				AC4642032BF5F0AC002DEE95 /* Base in Resources */,
 			);

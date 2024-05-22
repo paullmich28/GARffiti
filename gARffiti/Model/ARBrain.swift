@@ -7,10 +7,14 @@
 
 import Foundation
 import ARKit
+import AVFoundation
 
 struct ARBrain {
     var fullPaintArray = [[SCNNode]]()
     var singlePaintArray = [SCNNode]()
+    
+    var audioPlayer: AVAudioPlayer?
+    var timer: Timer?
     
     mutating func paint(_ node: SCNNode, _ color: UIColor, _ hitResult: ARHitTestResult){
         let sphereMaterial = SCNMaterial()
