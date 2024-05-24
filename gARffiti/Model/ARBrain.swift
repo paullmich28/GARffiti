@@ -12,9 +12,7 @@ import AVFoundation
 struct ARBrain {
     var fullPaintArray = [[SCNNode]]()
     var singlePaintArray = [SCNNode]()
-    
-    var audioPlayer: AVAudioPlayer?
-    var timer: Timer?
+    var sprayAmount = 0
     
     mutating func paint(_ node: SCNNode, _ color: UIColor, _ hitResult: ARHitTestResult){
         let sphereMaterial = SCNMaterial()
@@ -95,6 +93,14 @@ struct ARBrain {
                 // Remove the flash view after the animation
                 flashView.removeFromSuperview()
             }
+        }
+    }
+    
+    func amountSprayDecision() -> Bool{
+        if sprayAmount > 0 {
+            return true
+        }else{
+            return false
         }
     }
 }

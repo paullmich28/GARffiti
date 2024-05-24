@@ -13,16 +13,16 @@ import AVFoundation
 class ViewController: UIViewController, ARSCNViewDelegate, AVAudioPlayerDelegate {
     
     var arBrain = ARBrain()
+    var soundModel = SoundEffectModel()
     
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var colorWheel: UIColorWell!
     @IBOutlet weak var radiusSlider: UISlider!
+    @IBOutlet weak var labelTemp: UILabel!
+    @IBOutlet weak var overlayView: UIView!
     
-    var audioPlayer: AVAudioPlayer?
     var timer: Timer?
     var isDrawing: Bool = false
-    
-    var sprayAmount = 0
     
     /* Override functions */
     
@@ -32,6 +32,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVAudioPlayerDelegate
         radiusSlider.minimumValue = 0.005
         radiusSlider.maximumValue = 0.05
         radiusSlider.value = radiusSlider.maximumValue / 2
+        radiusSlider.transform = CGAffineTransform(rotationAngle: CGFloat(-Double.pi / 2))
+        
+        labelTemp.isHidden = true
         
         sceneView.delegate = self
     }
@@ -41,9 +44,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVAudioPlayerDelegate
         
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = .vertical
-        configuration.isCollaborationEnabled = true
         
-        //        sceneView.session.delegate = self
         sceneView.session.run(configuration)
     }
     
@@ -55,19 +56,15 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVAudioPlayerDelegate
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         let url = Bundle.main.url(forResource: "kocok", withExtension: "mp3")!
         
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
-            guard let player = audioPlayer else { return }
-            sprayAmount = 500
-            player.play()
-        } catch let error as NSError {
-            print(error.description)
-        }
+        arBrain.sprayAmount = 500
+        
+        soundModel.audioAssign(url)?.play()
+        
+        overlayView.isHidden = arBrain.amountSprayDecision()
     }
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        guard let player = audioPlayer else { return }
-        player.stop()
+        soundModel.audioStop()
     }
     
     func renderer(_ renderer: any SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
@@ -82,31 +79,31 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVAudioPlayerDelegate
     }
     
     /* Button Functions */
-    
-    @IBAction func deleteOnPressed(_ sender: UIBarButtonItem) {
+    @IBAction func deleteOnPressed(_ sender: UIButton) {
         arBrain.deleteAll()
     }
     
     @IBAction func drawButtonHold(_ sender: UIButton) {
-        if sprayAmount > 0 {
+        if arBrain.amountSprayDecision() {
             let url = Bundle.main.url(forResource: "gambar", withExtension: "mp3")!
             
-            do {
-                self.audioPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
-            } catch let error {
-                print(error)
-            }
+            let player = soundModel.audioAssign(url)
             
-            timer = Timer.scheduledTimer(withTimeInterval: 0.02, repeats: true) { timer in
+            timer = Timer.scheduledTimer(withTimeInterval: 0.02, repeats: true) { _ in
                 self.updateNodePosition()
+                
                 if self.isDrawing {
-                    self.audioPlayer?.numberOfLoops = -1
-                    self.audioPlayer?.delegate = self
-                    self.audioPlayer?.play()
+                    player?.numberOfLoops = -1
+                    player?.delegate = self
+                    player?.play()
                 }
                 
-                print(self.sprayAmount)
+                self.overlayView.isHidden = self.arBrain.amountSprayDecision()
+                
+                print(self.arBrain.sprayAmount)
             }
+        }else{
+            overlayView.isHidden = arBrain.amountSprayDecision()
         }
     }
     
@@ -114,49 +111,47 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVAudioPlayerDelegate
         timer?.invalidate()
         
         arBrain.afterPaint()
-        guard let player = audioPlayer else { return }
-        player.stop()
+        soundModel.audioStop()
+        
         self.isDrawing = false
+        overlayView.isHidden = arBrain.amountSprayDecision()
         
         timer = nil
     }
     
-    @objc func updateNodePosition(){
-        if sprayAmount > 0{
-            let screenCenter = CGPoint(x: sceneView.bounds.midX, y: sceneView.bounds.midY)
-            
-            // Perform hit testing using the center point
-            let results = sceneView.hitTest(screenCenter, types: .existingPlaneUsingExtent)
-            
-            if let hitResult = results.first {
-                let sphereNode = SCNNode(geometry: SCNSphere(radius: CGFloat(radiusSlider.value)))
-                
-                arBrain.paint(sphereNode, colorWheel.selectedColor!, hitResult)
-                sprayAmount -= 1
-                
-                DispatchQueue.main.async {
-                    self.sceneView.scene.rootNode.addChildNode(sphereNode)
-                }
-                
-                self.isDrawing = true
-            }
-        }else{
-            guard let player = audioPlayer else { return }
-            player.stop()
-        }
-        
-    }
-    
     @IBAction func takePhoto(_ sender: UIButton) {
-        arBrain.addFlashEffect(sceneView)
-        
         let photoTaken = sceneView.snapshot()
         UIImageWriteToSavedPhotosAlbum(photoTaken, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+        
+        arBrain.addFlashEffect(sceneView)
     }
     
     @IBAction func undoButtonPressed(_ sender: UIButton) {
         arBrain.undo()
     }
+    
+    @objc func updateNodePosition(){
+            if arBrain.amountSprayDecision() {
+                let screenCenter = CGPoint(x: sceneView.bounds.midX, y: sceneView.bounds.midY)
+                
+                let results = sceneView.hitTest(screenCenter, types: .existingPlaneUsingExtent)
+                
+                if let hitResult = results.first {
+                    let sphereNode = SCNNode(geometry: SCNSphere(radius: CGFloat(radiusSlider.value)))
+                    
+                    arBrain.paint(sphereNode, colorWheel.selectedColor!, hitResult)
+                    arBrain.sprayAmount -= 1
+                    
+                    DispatchQueue.main.async {
+                        self.sceneView.scene.rootNode.addChildNode(sphereNode)
+                    }
+                    
+                    self.isDrawing = true
+                }
+            }else{
+                soundModel.audioStop()
+            }
+        }
     
     /* Extension Function */
     

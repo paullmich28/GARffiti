@@ -16,7 +16,7 @@
 		AC4642032BF5F0AC002DEE95 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = AC4642022BF5F0AC002DEE95 /* Base */; };
 		AC609D0D2BF8FBDF00C60504 /* ARBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC609D0C2BF8FBDF00C60504 /* ARBrain.swift */; };
 		AC96405C2BFD9E070067C479 /* kocok.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AC96405B2BFD9E070067C479 /* kocok.mp3 */; };
-		ACCB55FD2BF71305007E9D87 /* MultipeerSession in Frameworks */ = {isa = PBXBuildFile; productRef = ACCB55FC2BF71305007E9D87 /* MultipeerSession */; };
+		ACF17A342C00664500A2F450 /* SoundEffectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF17A332C00664500A2F450 /* SoundEffectModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +31,7 @@
 		AC4C17AD2BF7275600CDEBFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AC609D0C2BF8FBDF00C60504 /* ARBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARBrain.swift; sourceTree = "<group>"; };
 		AC96405B2BFD9E070067C479 /* kocok.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = kocok.mp3; sourceTree = "<group>"; };
+		ACF17A332C00664500A2F450 /* SoundEffectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundEffectModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,7 +39,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACCB55FD2BF71305007E9D87 /* MultipeerSession in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				AC609D0C2BF8FBDF00C60504 /* ARBrain.swift */,
+				ACF17A332C00664500A2F450 /* SoundEffectModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -127,7 +128,6 @@
 			);
 			name = gARffiti;
 			packageProductDependencies = (
-				ACCB55FC2BF71305007E9D87 /* MultipeerSession */,
 			);
 			productName = gARffiti;
 			productReference = AC4641F32BF5F0AB002DEE95 /* gARffiti.app */;
@@ -158,7 +158,6 @@
 			);
 			mainGroup = AC4641EA2BF5F0AB002DEE95;
 			packageReferences = (
-				ACCB55FB2BF71305007E9D87 /* XCRemoteSwiftPackageReference "multipeer-session" */,
 			);
 			productRefGroup = AC4641F42BF5F0AB002DEE95 /* Products */;
 			projectDirPath = "";
@@ -190,6 +189,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACF17A342C00664500A2F450 /* SoundEffectModel.swift in Sources */,
 				AC609D0D2BF8FBDF00C60504 /* ARBrain.swift in Sources */,
 				AC4641FB2BF5F0AB002DEE95 /* ViewController.swift in Sources */,
 				AC4641F72BF5F0AB002DEE95 /* AppDelegate.swift in Sources */,
@@ -425,25 +425,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		ACCB55FB2BF71305007E9D87 /* XCRemoteSwiftPackageReference "multipeer-session" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/RyanKopinskyLLC/multipeer-session.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		ACCB55FC2BF71305007E9D87 /* MultipeerSession */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = ACCB55FB2BF71305007E9D87 /* XCRemoteSwiftPackageReference "multipeer-session" */;
-			productName = MultipeerSession;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AC4641EB2BF5F0AB002DEE95 /* Project object */;
 }
