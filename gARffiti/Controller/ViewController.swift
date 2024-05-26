@@ -12,27 +12,27 @@ import AVFoundation
 
 class ViewController: UIViewController, ARSCNViewDelegate, AVAudioPlayerDelegate {
     
-    var arBrain = ARBrain()
-    var soundModel = SoundEffectModel()
+    private var arBrain = ARBrain()
+    private var soundModel = SoundEffectModel()
     
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var colorWheel: UIColorWell!
     @IBOutlet weak var radiusSlider: UISlider!
     @IBOutlet weak var labelTemp: UILabel!
     @IBOutlet weak var overlayView: UIView!
+    @IBOutlet weak var shakeImage: UIImageView!
     
-    var timer: Timer?
-    var isDrawing: Bool = false
-    
-    /* Override functions */
+    private var timer: Timer?
+    private var isDrawing: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         radiusSlider.minimumValue = 0.005
-        radiusSlider.maximumValue = 0.05
+        radiusSlider.maximumValue = 0.1
         radiusSlider.value = radiusSlider.maximumValue / 2
         radiusSlider.transform = CGAffineTransform(rotationAngle: CGFloat(-Double.pi / 2))
+        shakeImage.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / 4))
         
         labelTemp.isHidden = true
         
@@ -78,7 +78,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVAudioPlayerDelegate
         }
     }
     
-    /* Button Functions */
     @IBAction func deleteOnPressed(_ sender: UIButton) {
         arBrain.deleteAll()
     }
@@ -99,8 +98,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVAudioPlayerDelegate
                 }
                 
                 self.overlayView.isHidden = self.arBrain.amountSprayDecision()
-                
-                print(self.arBrain.sprayAmount)
             }
         }else{
             overlayView.isHidden = arBrain.amountSprayDecision()
@@ -131,29 +128,32 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVAudioPlayerDelegate
     }
     
     @objc func updateNodePosition(){
-            if arBrain.amountSprayDecision() {
-                let screenCenter = CGPoint(x: sceneView.bounds.midX, y: sceneView.bounds.midY)
-                
-                let results = sceneView.hitTest(screenCenter, types: .existingPlaneUsingExtent)
-                
-                if let hitResult = results.first {
-                    let sphereNode = SCNNode(geometry: SCNSphere(radius: CGFloat(radiusSlider.value)))
-                    
-                    arBrain.paint(sphereNode, colorWheel.selectedColor!, hitResult)
-                    arBrain.sprayAmount -= 1
-                    
-                    DispatchQueue.main.async {
-                        self.sceneView.scene.rootNode.addChildNode(sphereNode)
-                    }
-                    
-                    self.isDrawing = true
-                }
-            }else{
-                soundModel.audioStop()
+        if arBrain.amountSprayDecision() {
+            let screenCenter = CGPoint(x: sceneView.bounds.midX, y: sceneView.bounds.midY)
+            
+//            let results = sceneView.hitTest(screenCenter, types: .existingPlaneUsingExtent)
+            guard let raycastQuery = sceneView.raycastQuery(from: screenCenter, allowing: .estimatedPlane, alignment: .vertical) else {
+                return
             }
+
+            let results = sceneView.session.raycast(raycastQuery)
+            
+            if let hitResult = results.first {
+                let sphereNode = SCNNode(geometry: SCNSphere(radius: CGFloat(radiusSlider.value)))
+                
+                arBrain.paint(sphereNode, colorWheel.selectedColor!, hitResult)
+                arBrain.sprayAmount -= 1
+                
+                DispatchQueue.main.async {
+                    self.sceneView.scene.rootNode.addChildNode(sphereNode)
+                }
+                
+                self.isDrawing = true
+            }
+        }else{
+            soundModel.audioStop()
         }
-    
-    /* Extension Function */
+    }
     
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         if let error = error {

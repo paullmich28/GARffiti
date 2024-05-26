@@ -8,7 +8,7 @@
 import AVFoundation
 
 struct SoundEffectModel {
-    var audioPlayer: AVAudioPlayer?
+    private var audioPlayer: AVAudioPlayer?
     
     mutating func audioAssign(_ url: URL) -> AVAudioPlayer? {
         do{

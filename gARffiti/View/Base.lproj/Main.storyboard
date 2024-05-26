@@ -127,17 +127,36 @@
                                 </constraints>
                                 <color key="selectedColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </colorWell>
-                            <view alpha="0.29999999999999999" contentMode="scaleToFill" id="3dL-cr-X3R">
+                            <view alpha="0.5" contentMode="scaleToFill" id="3dL-cr-X3R">
                                 <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Lcf-dV-Fne">
-                                        <rect key="frame" x="563" y="448" width="240" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="HEi-6K-sdD">
+                                        <rect key="frame" x="533" y="343" width="300" height="338.5"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iphone.gen3.radiowaves.left.and.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Lcf-dV-Fne">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="300" id="EXe-Jr-whe"/>
+                                                    <constraint firstAttribute="height" constant="300" id="rDa-Mn-hc0"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shake!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NYE-fG-0BA">
+                                                <rect key="frame" x="98.5" y="300" width="103.5" height="38.5"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <viewLayoutGuide key="safeArea" id="AV7-V2-8zk"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="HEi-6K-sdD" firstAttribute="centerY" secondItem="3dL-cr-X3R" secondAttribute="centerY" id="BqD-YY-kpD"/>
+                                    <constraint firstItem="HEi-6K-sdD" firstAttribute="centerX" secondItem="3dL-cr-X3R" secondAttribute="centerX" id="pD8-nt-ct5"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="AaO-v8-65n"/>
@@ -166,6 +185,7 @@
                         <outlet property="overlayView" destination="3dL-cr-X3R" id="VJW-fH-fSG"/>
                         <outlet property="radiusSlider" destination="CNx-bh-wPE" id="zLC-2T-AU8"/>
                         <outlet property="sceneView" destination="zzA-gj-ij5" id="Y6r-SU-ToN"/>
+                        <outlet property="shakeImage" destination="Lcf-dV-Fne" id="5jg-Dv-fi7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dTW-zx-3tM" sceneMemberID="firstResponder"/>
@@ -174,9 +194,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Logo" width="433" height="577"/>
         <image name="arrow.counterclockwise" catalog="system" width="113" height="128"/>
         <image name="camera.fill" catalog="system" width="128" height="93"/>
+        <image name="iphone.gen3.radiowaves.left.and.right" catalog="system" width="128" height="85"/>
         <image name="pencil.line" catalog="system" width="128" height="117"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="trash.fill" catalog="system" width="117" height="128"/>

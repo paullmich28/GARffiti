@@ -10,11 +10,11 @@ import ARKit
 import AVFoundation
 
 struct ARBrain {
-    var fullPaintArray = [[SCNNode]]()
-    var singlePaintArray = [SCNNode]()
-    var sprayAmount = 0
+    private var fullPaintArray = [[SCNNode]]()
+    private var singlePaintArray = [SCNNode]()
+    public var sprayAmount = 0
     
-    mutating func paint(_ node: SCNNode, _ color: UIColor, _ hitResult: ARHitTestResult){
+    mutating func paint(_ node: SCNNode, _ color: UIColor, _ hitResult: ARRaycastResult){
         let sphereMaterial = SCNMaterial()
         sphereMaterial.diffuse.contents = color
         
