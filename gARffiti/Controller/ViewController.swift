@@ -48,11 +48,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, AVAudioPlayerDelegate
         sceneView.session.run(configuration)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        sceneView.session.pause()
-    }
-    
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         let url = Bundle.main.url(forResource: "kocok", withExtension: "mp3")!
         
